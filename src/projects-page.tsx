@@ -1,30 +1,46 @@
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Badge } from "@/components/ui/badge"
-import { Calendar, Users } from "lucide-react"
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
+import { Calendar, Users } from "lucide-react";
 
 interface Project {
-  id: number
-  name: string
-  description: string
-  status: "active" | "completed" | "on-hold"
-  dueDate: string
-  team: string[]
+  id: number;
+  name: string;
+  description: string;
+  status: "active" | "completed" | "on-hold";
+  dueDate: string;
+  team: string[];
 }
 
 const initialProjects: Project[] = [
   {
     id: 1,
     name: "Website Redesign",
-    description: "Overhaul the company website to improve user experience and conversion rates.",
+    description:
+      "Overhaul the company website to improve user experience and conversion rates.",
     status: "active",
     dueDate: "2023-08-15",
-    team: ["John Doe", "Jane Smith"]
+    team: ["John Doe", "Jane Smith"],
   },
   {
     id: 2,
@@ -32,7 +48,7 @@ const initialProjects: Project[] = [
     description: "Research and plan expansion into new market segments.",
     status: "on-hold",
     dueDate: "2023-09-30",
-    team: ["Alice Johnson", "Bob Brown"]
+    team: ["Alice Johnson", "Bob Brown"],
   },
   {
     id: 3,
@@ -40,20 +56,28 @@ const initialProjects: Project[] = [
     description: "Prepare and execute the launch of our new flagship product.",
     status: "completed",
     dueDate: "2023-07-01",
-    team: ["Eve Wilson", "Charlie Davis"]
+    team: ["Eve Wilson", "Charlie Davis"],
   },
-]
+];
 
 export default function ProjectsPage() {
-  const [projects, setProjects] = useState<Project[]>(initialProjects)
-  const [newProject, setNewProject] = useState<Partial<Project>>({})
+  const [projects, setProjects] = useState<Project[]>(initialProjects);
+  const [newProject, setNewProject] = useState<Partial<Project>>({});
 
   const handleCreateProject = () => {
     if (newProject.name && newProject.description) {
-      setProjects([...projects, { ...newProject, id: projects.length + 1, status: "active", team: [] } as Project])
-      setNewProject({})
+      setProjects([
+        ...projects,
+        {
+          ...newProject,
+          id: projects.length + 1,
+          status: "active",
+          team: [],
+        } as Project,
+      ]);
+      setNewProject({});
     }
-  }
+  };
 
   return (
     <div className="space-y-6">
@@ -66,7 +90,9 @@ export default function ProjectsPage() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Create New Project</DialogTitle>
-              <DialogDescription>Add a new project to your dashboard.</DialogDescription>
+              <DialogDescription>
+                Add a new project to your dashboard.
+              </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
               <div>
@@ -74,7 +100,9 @@ export default function ProjectsPage() {
                 <Input
                   id="project-name"
                   value={newProject.name || ""}
-                  onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
+                  onChange={(e) =>
+                    setNewProject({ ...newProject, name: e.target.value })
+                  }
                 />
               </div>
               <div>
@@ -82,7 +110,12 @@ export default function ProjectsPage() {
                 <Input
                   id="project-description"
                   value={newProject.description || ""}
-                  onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
+                  onChange={(e) =>
+                    setNewProject({
+                      ...newProject,
+                      description: e.target.value,
+                    })
+                  }
                 />
               </div>
               <div>
@@ -91,7 +124,9 @@ export default function ProjectsPage() {
                   id="project-due-date"
                   type="date"
                   value={newProject.dueDate || ""}
-                  onChange={(e) => setNewProject({ ...newProject, dueDate: e.target.value })}
+                  onChange={(e) =>
+                    setNewProject({ ...newProject, dueDate: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -114,23 +149,29 @@ export default function ProjectsPage() {
           ))}
         </TabsContent>
         <TabsContent value="active" className="space-y-4">
-          {projects.filter(p => p.status === "active").map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+          {projects
+            .filter((p) => p.status === "active")
+            .map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
         </TabsContent>
         <TabsContent value="completed" className="space-y-4">
-          {projects.filter(p => p.status === "completed").map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+          {projects
+            .filter((p) => p.status === "completed")
+            .map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
         </TabsContent>
         <TabsContent value="on-hold" className="space-y-4">
-          {projects.filter(p => p.status === "on-hold").map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+          {projects
+            .filter((p) => p.status === "on-hold")
+            .map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
 
 function ProjectCard({ project }: { project: Project }) {
@@ -139,7 +180,15 @@ function ProjectCard({ project }: { project: Project }) {
       <CardHeader>
         <CardTitle className="flex justify-between items-center">
           {project.name}
-          <Badge variant={project.status === "completed" ? "secondary" : project.status === "on-hold" ? "destructive" : "default"}>
+          <Badge
+            variant={
+              project.status === "completed"
+                ? "secondary"
+                : project.status === "on-hold"
+                ? "destructive"
+                : "default"
+            }
+          >
             {project.status}
           </Badge>
         </CardTitle>
@@ -158,8 +207,10 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" className="w-full">View Details</Button>
+        <Button variant="outline" className="w-full">
+          View Details
+        </Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
