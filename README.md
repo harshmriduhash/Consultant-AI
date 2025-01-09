@@ -1,10 +1,10 @@
-# ElevateAI: AI-Powered Business Consultant
+# Consultant-AI: AI-Powered Business Consultant
 
-ElevateAI is an intelligent web application designed to provide businesses with AI-driven insights, advice, and analytics to improve their products, processes, and team dynamics.
+Consultant-AI is an intelligent web application designed to provide businesses with AI-driven insights, advice, and analytics to improve their products, processes, and team dynamics.
 
 ## Project Overview
 
-ElevateAI aims to empower businesses by offering:
+Consultant-AI aims to empower businesses by offering:
 
 - AI-powered consultation using advanced language models
 - Continuous learning about the user's business
@@ -35,7 +35,7 @@ The project is currently in active development. Here's what's been implemented s
 
 1. Clone the repository:
    ```
-   git clone https://github.com/smile4fun1/elevate-ai.git
+   git clone https://github.com/harshmriduhash/Consultant-AI
    cd elevate-ai
    ```
 
