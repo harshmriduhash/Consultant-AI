@@ -1,87 +1,105 @@
-import React, { useState, useRef, useEffect } from "react"
-import { Send, Paperclip, Mic, Image as ImageIcon, Loader2 } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { cn } from "@/lib/utils"
-import { useToast } from "@/components/ui/use-toast"
+import React, { useState, useRef, useEffect } from "react";
+import {
+  Send,
+  Paperclip,
+  Mic,
+  Image as ImageIcon,
+  Loader2,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Message {
-  id: number
-  content: string
-  sender: "user" | "ai"
-  timestamp: Date
+  id: number;
+  content: string;
+  sender: "user" | "ai";
+  timestamp: Date;
 }
 
 const messageVariants = {
   initial: { opacity: 0, y: 50 },
   animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -50 }
-}
+  exit: { opacity: 0, y: -50 },
+};
 
 export default function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([
-    { id: 1, content: "Hello! I'm your AI business consultant. How can I assist you today?", sender: "ai", timestamp: new Date() },
-  ])
-  const [input, setInput] = useState("")
-  const [isRecording, setIsRecording] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const scrollAreaRef = useRef<HTMLDivElement>(null)
-  const { toast } = useToast()
+    {
+      id: 1,
+      content:
+        "Hello! I'm your AI business consultant. How can I assist you today?",
+      sender: "ai",
+      timestamp: new Date(),
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const [isRecording, setIsRecording] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight
+      scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
     }
-  }, [messages])
+  }, [messages]);
 
   const handleSendMessage = () => {
     if (input.trim()) {
-      const newMessage: Message = { id: messages.length + 1, content: input, sender: "user", timestamp: new Date() }
-      setMessages([...messages, newMessage])
-      setInput("")
-      setIsLoading(true)
+      const newMessage: Message = {
+        id: messages.length + 1,
+        content: input,
+        sender: "user",
+        timestamp: new Date(),
+      };
+      setMessages([...messages, newMessage]);
+      setInput("");
+      setIsLoading(true);
       // Simulate AI response
       setTimeout(() => {
         const aiResponse: Message = {
           id: messages.length + 2,
-          content: "Thank you for your message. I'm analyzing your request and will provide insights shortly.",
+          content:
+            "Thank you for your message. I'm analyzing your request and will provide insights shortly.",
           sender: "ai",
-          timestamp: new Date()
-        }
-        setMessages(prevMessages => [...prevMessages, aiResponse])
-        setIsLoading(false)
-      }, 2000)
+          timestamp: new Date(),
+        };
+        setMessages((prevMessages) => [...prevMessages, aiResponse]);
+        setIsLoading(false);
+      }, 2000);
     }
-  }
+  };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault()
-      handleSendMessage()
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
     }
-  }
+  };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0];
     if (file) {
       // Handle file upload logic here
-      console.log("File uploaded:", file.name)
+      console.log("File uploaded:", file.name);
       toast({
         title: "File Uploaded",
         description: `${file.name} has been successfully uploaded.`,
-      })
+      });
     }
-  }
+  };
 
   const toggleRecording = () => {
-    setIsRecording(!isRecording)
+    setIsRecording(!isRecording);
     // Implement actual voice recording logic here
-  }
+  };
 
   return (
     <div className="flex flex-col h-full">
@@ -122,12 +140,19 @@ export default function ChatInterface() {
             <CardContent className="border-t border-border p-4">
               <form
                 onSubmit={(e) => {
-                  e.preventDefault()
-                  handleSendMessage()
+                  e.preventDefault();
+                  handleSendMessage();
                 }}
                 className="flex space-x-2"
               >
-                <Button type="button" variant="outline" size="icon" onClick={() => document.getElementById('file-upload')?.click()}>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  onClick={() =>
+                    document.getElementById("file-upload")?.click()
+                  }
+                >
                   <Paperclip className="h-4 w-4" />
                 </Button>
                 <input
@@ -136,8 +161,15 @@ export default function ChatInterface() {
                   className="hidden"
                   onChange={handleFileUpload}
                 />
-                <Button type="button" variant="outline" size="icon" onClick={toggleRecording}>
-                  <Mic className={cn("h-4 w-4", isRecording && "text-destructive")} />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  onClick={toggleRecording}
+                >
+                  <Mic
+                    className={cn("h-4 w-4", isRecording && "text-destructive")}
+                  />
                 </Button>
                 <Input
                   value={input}
@@ -173,7 +205,7 @@ export default function ChatInterface() {
         </Tabs>
       </Card>
     </div>
-  )
+  );
 }
 
 function MessageBubble({ message }: { message: Message }) {
@@ -210,5 +242,5 @@ function MessageBubble({ message }: { message: Message }) {
         </Avatar>
       )}
     </div>
-  )
+  );
 }

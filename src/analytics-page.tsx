@@ -1,6 +1,23 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ResponsiveContainer, LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const revenueData = [
   { name: "Jan", revenue: 4000, expenses: 2400, profit: 1600 },
@@ -10,7 +27,7 @@ const revenueData = [
   { name: "May", revenue: 1890, expenses: 4800, profit: -2910 },
   { name: "Jun", revenue: 2390, expenses: 3800, profit: -1410 },
   { name: "Jul", revenue: 3490, expenses: 4300, profit: -810 },
-]
+];
 
 const customerData = [
   { name: "Jan", newCustomers: 45, churnedCustomers: 20 },
@@ -20,7 +37,7 @@ const customerData = [
   { name: "May", newCustomers: 55, churnedCustomers: 21 },
   { name: "Jun", newCustomers: 67, churnedCustomers: 19 },
   { name: "Jul", newCustomers: 72, churnedCustomers: 17 },
-]
+];
 
 export default function AnalyticsPage() {
   return (
@@ -40,7 +57,9 @@ export default function AnalyticsPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold">$12,345</p>
-                <p className="text-sm text-muted-foreground">+15% from last month</p>
+                <p className="text-sm text-muted-foreground">
+                  +15% from last month
+                </p>
               </CardContent>
             </Card>
             <Card>
@@ -50,7 +69,9 @@ export default function AnalyticsPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold">$8,765</p>
-                <p className="text-sm text-muted-foreground">-5% from last month</p>
+                <p className="text-sm text-muted-foreground">
+                  -5% from last month
+                </p>
               </CardContent>
             </Card>
             <Card>
@@ -60,14 +81,18 @@ export default function AnalyticsPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold">$3,580</p>
-                <p className="text-sm text-muted-foreground">+25% from last month</p>
+                <p className="text-sm text-muted-foreground">
+                  +25% from last month
+                </p>
               </CardContent>
             </Card>
           </div>
           <Card>
             <CardHeader>
               <CardTitle>Financial Overview</CardTitle>
-              <CardDescription>Revenue, Expenses, and Profit over time</CardDescription>
+              <CardDescription>
+                Revenue, Expenses, and Profit over time
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="h-[300px]">
@@ -96,7 +121,9 @@ export default function AnalyticsPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold">1,234</p>
-                <p className="text-sm text-muted-foreground">+10% from last month</p>
+                <p className="text-sm text-muted-foreground">
+                  +10% from last month
+                </p>
               </CardContent>
             </Card>
             <Card>
@@ -106,7 +133,9 @@ export default function AnalyticsPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold">72</p>
-                <p className="text-sm text-muted-foreground">+20% from last month</p>
+                <p className="text-sm text-muted-foreground">
+                  +20% from last month
+                </p>
               </CardContent>
             </Card>
             <Card>
@@ -116,14 +145,18 @@ export default function AnalyticsPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold">2.5%</p>
-                <p className="text-sm text-muted-foreground">-1% from last month</p>
+                <p className="text-sm text-muted-foreground">
+                  -1% from last month
+                </p>
               </CardContent>
             </Card>
           </div>
           <Card>
             <CardHeader>
               <CardTitle>Customer Growth</CardTitle>
-              <CardDescription>New and churned customers over time</CardDescription>
+              <CardDescription>
+                New and churned customers over time
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="h-[300px]">
@@ -134,8 +167,16 @@ export default function AnalyticsPage() {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="newCustomers" fill="#8884d8" name="New Customers" />
-                    <Bar dataKey="churnedCustomers" fill="#82ca9d" name="Churned Customers" />
+                    <Bar
+                      dataKey="newCustomers"
+                      fill="#8884d8"
+                      name="New Customers"
+                    />
+                    <Bar
+                      dataKey="churnedCustomers"
+                      fill="#82ca9d"
+                      name="Churned Customers"
+                    />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -144,5 +185,5 @@ export default function AnalyticsPage() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
